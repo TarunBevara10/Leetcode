@@ -1,3 +1,4 @@
+#49
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         groups = {}
@@ -9,3 +10,4 @@ class Solution:
             groups[key].append(word)
 
         return list(groups.values())
+    

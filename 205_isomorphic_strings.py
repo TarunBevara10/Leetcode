@@ -1,3 +1,4 @@
+#205
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         map_st = {}
