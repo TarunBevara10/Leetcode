@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> result;
+        backtrack(nums, 0, result);
+        return result;
+    }
+
+private:
+    // start represents the index we are currently filling
+    void backtrack(vector<int>& nums, int start, vector<vector<int>>& result) {
+        // Base case: If we have filled all positions
+        if (start == nums.size()) {
+            result.push_back(nums);
+            return;
+        }
+
+        // Iterate through the array starting from 'start'
+        for (int i = start; i < nums.size(); ++i) {
+            // Swap the current element (start) with the loop element (i)
+            // This effectively "fixes" nums[i] at the current position 'start'
+            swap(nums[start], nums[i]);
+            
+            // Recurse to fill the next position
+            backtrack(nums, start + 1, result);
+            
+            // Backtrack: Undo the swap to explore other possibilities for this position
+            swap(nums[start], nums[i]);
+        }
+    }
+};
