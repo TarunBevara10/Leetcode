@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> minBitwiseArray(vector<int>& nums) {
+        vector<int> ans;
+        for (int b : nums) {
+            if (b == 2) {
+                ans.push_back(-1);
+                continue;
+            }
+            
+            // Find the length of the trailing block of 1s
+            // We want to flip the 'highest' bit in that trailing block
+            for (int i = 0; i < 31; ++i) {
+                // If the bit at i+1 is 0, then bit i is the highest 1 in the block
+                if (!((b >> (i + 1)) & 1)) {
+                    ans.push_back(b ^ (1 << i));
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
